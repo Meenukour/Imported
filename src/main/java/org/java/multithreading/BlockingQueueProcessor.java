@@ -5,6 +5,27 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 
+/**
+ * BlockingQueueProcessor - Demonstrates Producer-Consumer pattern using BlockingQueue
+ * 
+ * This example shows how to use BlockingQueue for thread-safe communication between
+ * producer and consumer threads. BlockingQueue automatically handles synchronization
+ * and provides blocking operations when the queue is full (put) or empty (take).
+ * 
+ * Key concepts demonstrated:
+ * - Producer-Consumer pattern
+ * - Thread-safe collections
+ * - Blocking operations
+ * - ArrayBlockingQueue with bounded capacity
+ * 
+ * Run this example and observe how producer and consumer threads coordinate
+ * through the shared BlockingQueue.
+ */
+
+/**
+ * FirstWorker - Producer thread that adds elements to the BlockingQueue
+ * Produces integers in sequence and puts them into the shared queue
+ */
 class FirstWorker implements  Runnable
 {
 private BlockingQueue<Integer> blockingQueue;
@@ -37,6 +58,10 @@ counter++;
 
     }
 }
+/**
+ * SecondWorker - Consumer thread that removes elements from the BlockingQueue
+ * Consumes integers from the queue and processes them
+ */
 class SecondWorker implements  Runnable
 {
     private BlockingQueue<Integer> blockingQueue;
@@ -67,15 +92,26 @@ class SecondWorker implements  Runnable
     }
 }
 
+/**
+ * Main application class demonstrating BlockingQueue usage
+ * Creates a bounded queue and starts producer and consumer threads
+ */
 public class BlockingQueueProcessor {
 
-
+    /**
+     * Main method - sets up the producer-consumer scenario
+     * Creates a BlockingQueue with capacity 10 and starts worker threads
+     */
     public static void main(String[] args) {
-BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<Integer>(10);
-FirstWorker firstWorker = new FirstWorker(blockingQueue);
-SecondWorker secondWorker = new SecondWorker(blockingQueue);
-       new Thread(firstWorker).start();
-       new Thread(secondWorker).start();
-
+        // Create a bounded BlockingQueue with capacity of 10 elements
+        BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<Integer>(10);
+        
+        // Create producer and consumer workers
+        FirstWorker firstWorker = new FirstWorker(blockingQueue);
+        SecondWorker secondWorker = new SecondWorker(blockingQueue);
+        
+        // Start both threads - they will communicate through the shared queue
+        new Thread(firstWorker).start();
+        new Thread(secondWorker).start();
     }
 }

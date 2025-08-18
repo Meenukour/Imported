@@ -11,27 +11,39 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * StreamEvaluation - Comprehensive examples of Java 8+ Stream API usage
+ * 
+ * This class demonstrates various stream operations including:
+ * - Character counting and frequency analysis
+ * - String manipulation and transformation
+ * - Collection processing and filtering
+ * - Age calculation using LocalDate
+ * - Advanced stream operations like grouping and partitioning
+ * 
+ * Run this class to see practical examples of stream processing.
+ */
 public class StreamEvaluation {
 
-
-//   Question 1 Write a program to print the count of each character in a String?
-//    Input: String s = "string data to count each character";
-//    Output: {s=1, t=5, r=3, i=1, n=2, g=1,  =5, d=1, a=5, o=2, c=4, u=1, e=2, h=2}
-
+    /**
+     * Main method demonstrating various Stream API operations
+     * Each section shows a different aspect of stream processing
+     */
     public static void main(String[] args) {
+        
+        // Example 1: Character frequency counting
+        // Input: "string data to count each character"
+        // Output: Character frequency map {s=1, t=5, r=3, i=1, n=2, g=1, etc.}
         String s = "string data to count each character";
 
 //        s.chars().mapToObj(string -> (char) string).
 //                collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().forEach(System.out::println);
 
 
-        //Question 2:
-
-        //Reverse each word of a string using Java 8 streams?
-        //
-        //String str = "Java Concept Of The Day";
-        //
-        //avaJ tpecnoC fO ehT yaD
+        // Example 2: String word reversal using streams
+        // Input: "Java Concept Of The Day"
+        // Output: "avaJ tpecnoC fO ehT yaD"
+        // Demonstrates: split, map with StringBuffer.reverse(), and joining
 
 
         String input = "Java Concept Of The Day";
@@ -39,16 +51,17 @@ public class StreamEvaluation {
 
 
 
-        //Question 3 -02/10/2024
-        //Write a Java 8 program to calculate the age of a person in years given their birthday.
+        // Example 3: Age calculation using LocalDate and Period
+        // Demonstrates: Date manipulation with Java 8 time API
 
         LocalDate birthDate = LocalDate.of(1992,04,11);
         LocalDate now = LocalDate.now();
         System.out.println("Age is"+ Period.between(now,birthDate).getYears());
 
-//Question 4
-        //Write a program to find the only duplicate count list in the List.
-        //"Java", "Spring", "JPA", "Java", "Cloud", "JPA"
+        // Example 4: Finding duplicates in a collection
+        // Input: ["Java", "Spring", "JPA", "Java", "Cloud", "JPA"]
+        // Output: Duplicate elements (Java, JPA)
+        // Demonstrates: groupingBy, filtering, and collecting
 
         List<String> strList = List.of("Java", "Spring", "JPA", "Java", "Cloud", "JPA");
 
