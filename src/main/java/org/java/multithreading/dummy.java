@@ -6,11 +6,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 class dummyWorker implements Runnable {
-    CountDownLatch latch ;
-int id;
+    CountDownLatch latch;
+    private int id;
     public dummyWorker(int id, CountDownLatch latch) {
         this.id = id;
-        this.latch =latch;
+        this.latch = latch;
     }
 
     /**
@@ -18,7 +18,7 @@ int id;
      */
     @Override
     public void run() {
-        System.out.println("This is run in"+id);
+        System.out.println("This is run in " + id);
         latch.countDown();
         try {
             Thread.sleep(2000);
@@ -39,7 +39,7 @@ public class dummy {
             executorService.execute(new dummyWorker(i,latch));
 
 latch.await();
-        System.out.println("All taska done");
+        System.out.println("All tasks done");
         executorService.shutdown();
 
     }
